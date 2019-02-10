@@ -61,12 +61,20 @@ public class Dishes {
         this.title = title;
     }
 
-    public String getDiscription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDiscription(String description) {
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
     }
 
     public Boolean getAvailable() {

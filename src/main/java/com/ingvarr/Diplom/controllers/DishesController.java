@@ -14,8 +14,12 @@ public class DishesController {
     @Autowired
     private DishesRepository repository;
 
-    @RequestMapping("/")
-    public String index(){
+    @RequestMapping(name = "/")
+    public String index(@ModelAttribute Dishes dish, Model model){
+
+        List<Dishes> dishes = (List<Dishes>) repository.findAll();
+        model.addAttribute("dishes", dishes);
+
         return "index.html";
 
 
@@ -40,7 +44,7 @@ public class DishesController {
 
 
         List<Dishes> dishes = (List<Dishes>) repository.findAll();
-        model.addAttribute("dishes", dish);
+        model.addAttribute("dishes", dishes);
         return "dish_list.html";
     }
 

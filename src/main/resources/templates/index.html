@@ -12,7 +12,9 @@
     <div th:utext="'Title: ' + ${dishes.title}"></div>
     <div th:utext="'Description: ' + ${dishes.description}"></div>
     <div th:integer="'Price: ' + ${dishes.price}"></div>
-    <p><input type="submit"value="Добавить в заказ"></p>
+    <a th:href="@{'/add_dish/{id}'(id=${dishes.id})}" class="col-md-1">
+        <button type="button" class="btn btn-primary" th:text="Добавить">Добавить</button>
+    </a>
 </div>
 
 

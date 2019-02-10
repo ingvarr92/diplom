@@ -11,8 +11,9 @@ import java.lang.reflect.Method;
 
 @Controller
 public class OrdersController {
+
     @Autowired
-    protected static OrdersRepository ordersRepository;
+    private OrdersRepository ordersRepository;
 
     @RequestMapping("/orders")
     public Iterable<Orders> getAllOrders(){

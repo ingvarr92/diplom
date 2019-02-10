@@ -11,8 +11,10 @@ import java.util.List;
 
 @Controller
 public class DishesController {
+
     @Autowired
-    protected static DishesRepository dishesRepository;
+    private DishesRepository dishesRepository;
+
 
     @RequestMapping(name = "/")
     public String index(@ModelAttribute Dishes dish, Model model){

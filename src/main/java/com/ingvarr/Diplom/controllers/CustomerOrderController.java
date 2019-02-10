@@ -4,6 +4,7 @@ package com.ingvarr.Diplom.controllers;
 import com.ingvarr.Diplom.entity.Dishes;
 import com.ingvarr.Diplom.entity.Orders;
 import com.ingvarr.Diplom.repositories.DishesRepository;
+import com.ingvarr.Diplom.repositories.OrdersRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,17 +28,17 @@ public class CustomerOrderController {
 
 
     @RequestMapping("/add_dish/{id}")
-    public String addProductToCart(@PathVariable("id") Integer dishId, Model model) {
+    public String addProductToCart(@PathVariable("id") Integer dishId, Model model, DishesRepository dishesRepository, OrdersRepository ordersRepository) {
         Orders order = new Orders();
-        Dishes dish = DishesController.dishesRepository.findById(dishId).get();
+        Dishes dish = dishesRepository.findById(dishId).get();
         order.getDishes().add(dish);
         order.setId(1);
         order.setPrice(dish.getPrice());
         order.setTable(5);
-        DishesController.dishesRepository.findById(dishId);
-        OrdersController.ordersRepository.save(order);
+        //dishesRepository.findById(dishId);
+        ordersRepository.save(order);
 
-        List<Dishes> dishes = (List<Dishes>) DishesController.dishesRepository.findAll();
+        List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
 
         return "index";

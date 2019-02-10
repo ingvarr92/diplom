@@ -36,7 +36,7 @@ public class CustomerOrderController {
         List<Dishes> dishes = (List<Dishes>) DishesController.dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
 
-        return "index.html";
+        return "index";
     }
 
 //    @GetMapping("/shoppingCart/addProduct/{productId}")

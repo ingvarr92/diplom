@@ -29,7 +29,11 @@ public class CustomerOrderController {
     @RequestMapping("/add_dish/{id}")
     public String addProductToCart(@PathVariable("id") Integer dishId, Model model) {
         Orders order = new Orders();
-        order.getDishes().add(DishesController.dishesRepository.findById(dishId).get());
+        Dishes dish = DishesController.dishesRepository.findById(dishId).get();
+        order.getDishes().add(dish);
+        order.setId(1);
+        order.setPrice(dish.getPrice());
+        order.setTable(5);
         DishesController.dishesRepository.findById(dishId);
         OrdersController.ordersRepository.save(order);
 

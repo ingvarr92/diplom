@@ -12,17 +12,15 @@ import java.util.List;
 @Controller
 public class DishesController {
     @Autowired
-    private DishesRepository repository;
+    protected DishesRepository dishesRepository;
 
     @RequestMapping(name = "/")
     public String index(@ModelAttribute Dishes dish, Model model){
 
-        List<Dishes> dishes = (List<Dishes>) repository.findAll();
+        List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
 
         return "index.html";
-
-
     }
 
     @RequestMapping("/admin")
@@ -40,17 +38,17 @@ public class DishesController {
 
     @RequestMapping(value = "/dish/create",method = RequestMethod.POST)
     public String submitForm(@ModelAttribute Dishes dish, Model model){
-        repository.save(dish);
+        dishesRepository.save(dish);
 
 
-        List<Dishes> dishes = (List<Dishes>) repository.findAll();
+        List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
         return "dish_list.html";
     }
 
     @RequestMapping("/dishes")
     public String dishesList(){
-        List<Dishes> dishes = (List<Dishes>) repository.findAll();
+        List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         return "dish_list.html";
     }
 

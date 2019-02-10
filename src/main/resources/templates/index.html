@@ -12,8 +12,8 @@
     <div th:utext="'Title: ' + ${dishes.title}"></div>
     <div th:utext="'Description: ' + ${dishes.description}"></div>
     <div th:integer="'Price: ' + ${dishes.price}"></div>
-    <a th:href="@{'/add_dish/{id}'(id=${dishes.id})}" class="col-md-1">
-        <button type="button" class="btn btn-primary" th:text="Добавить">Добавить</button>
+    <a th:href="@{'/add_dish/{id}'(id=${dishes.id})}">
+        <button type="button" th:text="Добавить">Добавить</button>
     </a>
 </div>
 

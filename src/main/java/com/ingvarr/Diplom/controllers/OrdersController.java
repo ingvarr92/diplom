@@ -12,11 +12,11 @@ import java.lang.reflect.Method;
 @Controller
 public class OrdersController {
     @Autowired
-    private OrdersRepository repository;
+    protected OrdersRepository ordersRepository;
 
     @RequestMapping("/orders")
     public Iterable<Orders> getAllOrders(){
-        return repository.findAll();
+        return ordersRepository.findAll();
     }
 
     //@RequestMapping(value = "orders/create", method = RequestMethod.GET)

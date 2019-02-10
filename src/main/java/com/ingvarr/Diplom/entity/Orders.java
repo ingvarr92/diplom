@@ -32,6 +32,13 @@ public class Orders {
     @ManyToMany(mappedBy = "orders")
     private Set<Dishes> dishes = new HashSet<>();
 
+    public Set<Dishes> getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(Set<Dishes> dishes) {
+        this.dishes = dishes;
+    }
 
     public Orders() {
     }

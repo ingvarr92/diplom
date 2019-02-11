@@ -43,7 +43,12 @@ public class Dishes {
     public Dishes() {
     }
 
-
+    @Override
+    public String toString() {
+        return title + '\'' +
+                " " + description + '\'' +
+                "Цена: " + price;
+    }
 
     public Integer getId() {
         return id;
@@ -92,5 +97,4 @@ public class Dishes {
     public void setPrice(Integer price) {
         this.price = price;
     }
-
 }

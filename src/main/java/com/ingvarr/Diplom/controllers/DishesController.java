@@ -26,8 +26,8 @@ public class DishesController {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
 
-        List<Orders> orderdishes = (List<Orders>) ordersRepository.findAll();//(List<Dishes>) ordersRepository.findAll();
-        model.addAttribute("orderdishes",orderdishes);
+        List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
+        model.addAttribute("orderdishes",ordereddishes);
         return "index.html";
     }
 
@@ -73,7 +73,8 @@ public class DishesController {
     }
 
     @RequestMapping("/add_dish/{id}")
-    public String addProductToCart(@PathVariable("id") Integer dishId, @ModelAttribute Orders order) {
+    public String addProductToCart(@PathVariable("id") Integer dishId) {
+        Orders order = new Orders();
         System.out.println("DishID "+ dishId);
         if (order.getPrice()==null) {
             order.setPrice(dishesRepository.findById(dishId).get().getPrice());

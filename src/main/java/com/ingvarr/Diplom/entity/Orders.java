@@ -4,10 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.EAN;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "orders_entity")
@@ -30,13 +27,13 @@ public class Orders {
 
 
     @ManyToMany(mappedBy = "orders")
-    private Set<Dishes> dishes = new HashSet<>();
+    private List<Dishes> dishes = new ArrayList<>();
 
-    public Set<Dishes> getDishes() {
+    public List<Dishes> getDishes() {
         return dishes;
     }
 
-    public void setDishes(Set<Dishes> dishes) {
+    public void setDishes(List<Dishes> dishes) {
         this.dishes = dishes;
     }
 

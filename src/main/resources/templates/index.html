@@ -12,7 +12,7 @@
     <div th:utext="'Id: ' + ${dishes.id}"></div>
     <div th:utext="'Title: ' + ${dishes.title}"></div>
     <div th:utext="'Description: ' + ${dishes.description}"></div>
-    <div th:number="'Price: ' + ${dishes.price}"></div>
+    <div th:utext="'Price: ' + ${dishes.price}"></div>
     <a th:href="@{'/add_dish/{id}'(id=${dishes.id})}">
         <button type="button" th:text="Добавить">Добавить</button>
     </a>
@@ -20,7 +20,8 @@
 
 <h3>Не... наши блюда:</h3>
 <div th:each="orderdishes: ${orderdishes}">
-    <div th:utext="'Id: ' + ${orderdishes.id}"></div>
+    <div th:utext="'Title: ' + ${orderdishes.title}"></div>
+    <div th:utext="'Price: ' + ${orderdishes.price}"></div>
 </div>
 
 

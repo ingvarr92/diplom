@@ -25,20 +25,18 @@ public class DishesController {
 
 
     @RequestMapping(name = "/")
-    public String index(@ModelAttribute Dishes dish, Model model, Orders orders, Model modelT) {
+    public String index(@ModelAttribute Dishes dish, Model model,@RequestParam(value = "orderId", required = true)Integer orderId) {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
-
-        if (ordersRepository.findById(1) != null) {
-            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
+            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
             model.addAttribute("orderdishes", ordereddishes);
-        }
+
         //System.out.println(order.getId());
             return "index.html";
-
     }
 
-    //    http://localhost:8080/courses/name?title=java
+
+    //http://localhost:8080/add_tbl?tbl=1
     @RequestMapping("/add_tbl")
     public String getCoursesByTittle(@RequestParam(value = "tbl", required = true)Integer tbl){
         Orders order = new Orders();
@@ -48,7 +46,7 @@ public class DishesController {
         ordersRepository.save(order);
         Integer orderId = order.getId();
 
-        return "redirect:/index";
+        return "redirect:/index?orderId=" +orderId;
 
     }
 

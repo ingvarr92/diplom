@@ -29,6 +29,7 @@ public class DishesController {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
         model.addAttribute("orderId",orderId);
+        model.addAttribute("totalPrice",ordersRepository.findById(orderId).get().getPrice());
 
 
             List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();

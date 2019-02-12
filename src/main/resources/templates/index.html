@@ -15,14 +15,17 @@
     <a th:href="@{'/add_dish/{id}?orderId={orderId}'(id=${dishes.id}, orderId=${orderId})}">
         <button type="button" th:text="Добавить">Добавить</button>
     </a>
+    <div></div>
 </div>
 
 <h3>Блюда в заказе:</h3>
 <div th:each="orderdishes: ${orderdishes}">
     <div th:utext="'Title: ' + ${orderdishes.title}"></div>
     <div th:utext="'Price: ' + ${orderdishes.price}"></div>
+    <div></div>
 </div>
-
+<h3>Общая стоимость:</h3>
+<div th:utext="${totalPrice}"></div>
 
 <h3>
     <a href="/admin">Админ?</a>

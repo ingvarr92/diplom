@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordered</title>
+</head>
+<body>
+<div>
+<h3>Вы заказали:</h3>
+</div>
+<div th:each="orderdishes: ${orderdishes}">
+    <div th:utext="'Title: ' + ${orderdishes.title}"></div>
+    <div th:utext="'Price: ' + ${orderdishes.price}"></div>
+    <div></div>
+</div>
+<a th:href="@{'/pay?orderId={orderId}'(orderId=${orderId})}">
+    <button type="button" th:text="Заказать">Добавить</button>
+</a>
+
+</body>
+</html>

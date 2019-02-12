@@ -54,6 +54,25 @@ public class DishesController {
 
     }
 
+    @RequestMapping("/ordered")
+    public String ordered(@ModelAttribute Dishes dish, Model model,@RequestParam(value = "orderId", required = true)Integer orderId){
+        Orders order = ordersRepository.findById(orderId).get();
+        order.setStatus("Заказано");
+        List<Dishes> ordereddishes = (List<Dishes>) order.getDishes();
+        model.addAttribute("orderdishes", ordereddishes);
+        model.addAttribute("orderId",orderId);
+        ordersRepository.save(order);
+        return "ordered";
+    }
+
+    @RequestMapping("/pay")
+    public String pay(@RequestParam(value = "orderId", required = true)Integer orderId){
+        Orders order = ordersRepository.findById(orderId).get();
+        order.setStatus("Оплачено");
+        ordersRepository.save(order);
+        return "pay";
+    }
+
     @RequestMapping("/admin")
     public String admin(){
         return "admin.html";

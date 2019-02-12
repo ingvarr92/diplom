@@ -26,6 +26,12 @@
 </div>
 <h3>Общая стоимость:</h3>
 <div th:utext="${totalPrice}"></div>
+<div>
+<a th:href="@{'/ordered?orderId={orderId}'(orderId=${orderId})}">
+    <button type="button" th:text="Заказать">Добавить</button>
+</a>
+</div>
+
 
 <h3>
     <a href="/admin">Админ?</a>

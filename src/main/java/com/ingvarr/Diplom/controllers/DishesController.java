@@ -28,6 +28,9 @@ public class DishesController {
     public String index(@ModelAttribute Dishes dish, Model model,@RequestParam(value = "orderId", required = true)Integer orderId) {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
+        model.addAttribute("orderId",orderId);
+
+
             List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
             model.addAttribute("orderdishes", ordereddishes);
 
@@ -81,19 +84,14 @@ public class DishesController {
     }
 
     @RequestMapping("/add_dish/{id}")
-    public String addProductToCart(@PathVariable("id") Integer dishId) {
-        Orders order = new Orders();
-        if (order.getPrice()==null) {
-            order.setPrice(dishesRepository.findById(dishId).get().getPrice());
-        }else {
-            order.setPrice(dishesRepository.findById(dishId).get().getPrice() + order.getPrice());
-        }
+    public String addProductToCart(@PathVariable("id") Integer dishId,@RequestParam(value = "orderId", required = true)Integer orderId) {
+        Orders order =ordersRepository.findById(orderId).get();
+        order.setPrice(dishesRepository.findById(dishId).get().getPrice() + order.getPrice());
         order.setStatus("Создан");
         order.setTable(5);
         order.getDishes().add(dishesRepository.findById(dishId).get());
-
-        System.out.println(order.getId());
         ordersRepository.save(order);
-        return "redirect:/index";
+
+        return "redirect:/index?orderId="+orderId;
     }
 }

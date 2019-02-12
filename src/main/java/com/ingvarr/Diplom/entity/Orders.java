@@ -19,10 +19,10 @@ public class Orders {
     @Column(name = "tableTest", length = 3, nullable = false)
     private Integer table;
 
-    @Column(name = "price", length = 6, nullable = false)
+    @Column(name = "price", length = 6, nullable = true)
     private Integer price;
 
-    @Column(name = "status", length = 20, nullable = false)
+    @Column(name = "status", length = 20, nullable = true)
     private String status;
 
     @ManyToMany(fetch = FetchType.LAZY,

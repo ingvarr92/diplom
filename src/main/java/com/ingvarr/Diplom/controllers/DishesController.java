@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Controller
@@ -20,30 +21,36 @@ public class DishesController {
     @Autowired
     protected OrdersRepository ordersRepository;
 
+    Orders order = new Orders();
+
 
     @RequestMapping(name = "/")
-    public String index(@ModelAttribute Dishes dish, Model model, Orders orders) {
+    public String index(@ModelAttribute Dishes dish, Model model, Orders orders, Model modelT) {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
-//        if (ordersRepository.findById(1) != null) {
-//            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
-//            model.addAttribute("orderdishes", ordereddishes);
-//        }
+
+        if (ordersRepository.findById(1) != null) {
+            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
+            model.addAttribute("orderdishes", ordereddishes);
+        }
+        //System.out.println(order.getId());
             return "index.html";
 
     }
 
+    //    http://localhost:8080/courses/name?title=java
+    @RequestMapping("/add_tbl")
+    public String getCoursesByTittle(@RequestParam(value = "tbl", required = true)Integer tbl){
+        Orders order = new Orders();
+        order.setTable(tbl);
+        order.setPrice(0);
+        order.setStatus("Открыт");
+        ordersRepository.save(order);
+        Integer orderId = order.getId();
 
-//    @RequestMapping(name = "/add_tbl/{tbl}")
-//    public String setTbl(@PathVariable("tbl") Integer tbl, @ModelAttribute Dishes dish, Model model, Orders order){
-//        order.setTable(tbl);
-//        List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
-//        model.addAttribute("dishes", dishes);
-//
-//        List<Orders> orderdishes = (List<Orders>) ordersRepository.findAll();//(List<Dishes>) ordersRepository.findAll();
-//        model.addAttribute("orderdishes",orderdishes);
-//        return "index.html";
-//    }
+        return "redirect:/index";
+
+    }
 
     @RequestMapping("/admin")
     public String admin(){
@@ -78,7 +85,6 @@ public class DishesController {
     @RequestMapping("/add_dish/{id}")
     public String addProductToCart(@PathVariable("id") Integer dishId) {
         Orders order = new Orders();
-        System.out.println("DishID "+ dishId);
         if (order.getPrice()==null) {
             order.setPrice(dishesRepository.findById(dishId).get().getPrice());
         }else {
@@ -87,6 +93,8 @@ public class DishesController {
         order.setStatus("Создан");
         order.setTable(5);
         order.getDishes().add(dishesRepository.findById(dishId).get());
+
+        System.out.println(order.getId());
         ordersRepository.save(order);
         return "redirect:/index";
     }

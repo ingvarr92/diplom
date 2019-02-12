@@ -6,8 +6,7 @@
 </head>
 <body>
 
-
-<h3>Наши блюда:</h3>
+<h4>Меню:</h4>
 <div th:each="dishes: ${dishes}">
     <div th:utext="'Id: ' + ${dishes.id}"></div>
     <div th:utext="'Title: ' + ${dishes.title}"></div>
@@ -18,7 +17,7 @@
     </a>
 </div>
 
-<h3>Не... наши блюда:</h3>
+<h3>Блюда в заказе:</h3>
 <div th:each="orderdishes: ${orderdishes}">
     <div th:utext="'Title: ' + ${orderdishes.title}"></div>
     <div th:utext="'Price: ' + ${orderdishes.price}"></div>

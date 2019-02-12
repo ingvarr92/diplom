@@ -12,27 +12,27 @@ import java.util.Set;
 
 @Service
 public class DishService {
-
-   // @Autowired
-    protected DishesRepository dishesRepository;
-
-   // @Autowired
-    public DishService(DishesRepository dishesRepository) {
-        this.dishesRepository = dishesRepository;
-    }
-
-    public Iterable<Dishes> findAll() {
-        return dishesRepository.findAll();
-    }
-
-
-
-
-    public Optional<Dishes> findById(Integer id) {
-        return dishesRepository.findById(id);
-    }
-
-    public void save(Dishes dish) {
-        dishesRepository.save(dish);
-    }
+//
+//   // @Autowired
+//    protected DishesRepository dishesRepository;
+//
+//   // @Autowired
+//    public DishService(DishesRepository dishesRepository) {
+//        this.dishesRepository = dishesRepository;
+//    }
+//
+//    public Iterable<Dishes> findAll() {
+//        return dishesRepository.findAll();
+//    }
+//
+//
+//
+//
+//    public Optional<Dishes> findById(Integer id) {
+//        return dishesRepository.findById(id);
+//    }
+//
+//    public void save(Dishes dish) {
+//        dishesRepository.save(dish);
+//    }
 }

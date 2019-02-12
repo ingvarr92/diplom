@@ -5,12 +5,9 @@ import com.ingvarr.Diplom.entity.Orders;
 import com.ingvarr.Diplom.repositories.DishesRepository;
 import com.ingvarr.Diplom.repositories.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Controller
@@ -21,8 +18,6 @@ public class DishesController {
     @Autowired
     protected OrdersRepository ordersRepository;
 
-    Orders order = new Orders();
-
 
     @RequestMapping(name = "/")
     public String index(@ModelAttribute Dishes dish, Model model,@RequestParam(value = "orderId", required = true)Integer orderId) {
@@ -32,11 +27,10 @@ public class DishesController {
         model.addAttribute("totalPrice",ordersRepository.findById(orderId).get().getPrice());
 
 
-            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
-            model.addAttribute("orderdishes", ordereddishes);
+        List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
+        model.addAttribute("orderdishes", ordereddishes);
 
-        //System.out.println(order.getId());
-            return "index.html";
+        return "index.html";
     }
 
 

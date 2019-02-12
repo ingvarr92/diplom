@@ -33,11 +33,16 @@ public class Dishes {
     @Column(name = "price",length = 9,nullable = false)
     private Integer price;
 
-    @ManyToMany
-    @JoinTable(name = "Orders_Dishes",
-            joinColumns = {@JoinColumn(name = "dishes_id")},
-            inverseJoinColumns = {@JoinColumn(name = "orders_id")}
-    )
+    @ManyToMany(fetch = FetchType.LAZY,
+                    cascade = {
+                            CascadeType.PERSIST,
+                            CascadeType.MERGE
+                    },
+                    mappedBy = "dishes")
+//    @JoinTable(name = "Orders_Dishes",
+//            joinColumns = {@JoinColumn(name = "dishes_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "orders_id")}
+//    )
     Set<Orders> orders = new HashSet<>();
 
     public Dishes() {

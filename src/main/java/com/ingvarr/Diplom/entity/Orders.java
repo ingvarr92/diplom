@@ -25,9 +25,19 @@ public class Orders {
     @Column(name = "status", length = 20, nullable = false)
     private String status;
 
-
-    @ManyToMany(mappedBy = "orders")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "orders_dishes",
+            joinColumns = { @JoinColumn(name = "orders_id") },
+            inverseJoinColumns = { @JoinColumn(name = "dishes_id") })
     private List<Dishes> dishes = new ArrayList<>();
+    //private Set<Dishes> dishes = new HashSet<>();
+
+//    @ManyToMany(mappedBy = "orders")
+//
 
     public List<Dishes> getDishes() {
         return dishes;

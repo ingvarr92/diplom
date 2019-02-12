@@ -22,14 +22,17 @@ public class DishesController {
 
 
     @RequestMapping(name = "/")
-    public String index(@ModelAttribute Dishes dish, Model model, Orders orders){
+    public String index(@ModelAttribute Dishes dish, Model model, Orders orders) {
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
+//        if (ordersRepository.findById(1) != null) {
+//            List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
+//            model.addAttribute("orderdishes", ordereddishes);
+//        }
+            return "index.html";
 
-        List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(1).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
-        model.addAttribute("orderdishes",ordereddishes);
-        return "index.html";
     }
+
 
 //    @RequestMapping(name = "/add_tbl/{tbl}")
 //    public String setTbl(@PathVariable("tbl") Integer tbl, @ModelAttribute Dishes dish, Model model, Orders order){

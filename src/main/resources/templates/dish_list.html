@@ -10,6 +10,9 @@
     <div th:utext="'Title: ' + ${dishes.title}"></div>
     <div th:utext="'Description: ' + ${dishes.description}"></div>
     <div th:utext="'Price: ' + ${dishes.price}"></div>
+    <a  th:href="@{'/del_dish_list/{id}'(id=${dishes.id})}">
+        <button type="button" th:text="Удалить">Удалить</button>
+    </a>
     <div>______________________________________________</div>
 </div>
 

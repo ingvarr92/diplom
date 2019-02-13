@@ -91,6 +91,11 @@ public class DishesController {
                return "error";
            }
     }
+    @RequestMapping("/del_dish_list/{id}")
+    public String addProductToCart(@PathVariable("id") Integer dishId) {
+        dishesRepository.deleteById(dishId);
+        return "redirect:/dishes";
+    }
 
     @RequestMapping(value = "/dish/create",method = RequestMethod.POST)
     public String submitForm(@ModelAttribute Dishes dish, Model model){

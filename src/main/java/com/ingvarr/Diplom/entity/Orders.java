@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.EAN;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
@@ -24,6 +25,17 @@ public class Orders {
 
     @Column(name = "status", length = 20, nullable = true)
     private String status;
+
+    @Column(name = "time")
+    private LocalDateTime time;
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -90,6 +102,8 @@ public class Orders {
                 ", table=" + table +
                 ", price=" + price +
                 ", status='" + status + '\'' +
+                ", time=" + time +
+                ", dishes=" + dishes +
                 '}';
     }
 }

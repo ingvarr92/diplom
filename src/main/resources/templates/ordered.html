@@ -11,7 +11,9 @@
 <div th:each="orderdishes: ${orderdishes}">
     <div th:utext="'Title: ' + ${orderdishes.title}"></div>
     <div th:utext="'Price: ' + ${orderdishes.price}"></div>
-    <div></div>
+    <div>______________________________________  </div>
+    <div>  </div>
+
 </div>
 <a th:href="@{'/pay?orderId={orderId}'(orderId=${orderId})}">
     <button type="button" th:text="Оплатить">Оплатить</button>

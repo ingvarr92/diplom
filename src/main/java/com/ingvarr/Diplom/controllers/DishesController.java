@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -45,6 +49,7 @@ public class DishesController {
         order.setTable(tbl);
         order.setPrice(0);
         order.setStatus("Открыт");
+        order.setTime(LocalDateTime.now());
         ordersRepository.save(order);
         Integer orderId = order.getId();
 

@@ -21,6 +21,7 @@ public class DishesController {
 
     @RequestMapping(name = "/")
     public String index(@ModelAttribute Dishes dish, Model model,@RequestParam(value = "orderId", required = true)Integer orderId) {
+        try{
         List<Dishes> dishes = (List<Dishes>) dishesRepository.findAll();
         model.addAttribute("dishes", dishes);
         model.addAttribute("orderId",orderId);
@@ -30,11 +31,14 @@ public class DishesController {
         List<Dishes> ordereddishes = (List<Dishes>) ordersRepository.findById(orderId).get().getDishes();//(List<Dishes>) ordersRepository.findAll();
         model.addAttribute("orderdishes", ordereddishes);
 
-        return "index.html";
+        return "index.html";}
+        catch (Exception e){
+            System.out.println(e);
+            return "404";
+        }
     }
 
 
-    //http://localhost:8080/add_tbl?tbl=1
     @RequestMapping("/add_tbl")
     public String getCoursesByTittle(@RequestParam(value = "tbl", required = true)Integer tbl){
         Orders order = new Orders();
@@ -45,7 +49,6 @@ public class DishesController {
         Integer orderId = order.getId();
 
         return "redirect:/index?orderId=" +orderId;
-
     }
 
     @RequestMapping("/ordered")
@@ -76,8 +79,12 @@ public class DishesController {
 
     @RequestMapping(value = "/dish/create",method = RequestMethod.GET)
     public String showForm(@ModelAttribute Dishes dish, Model model){
-        model.addAttribute("dishes",new Dishes());
-        return "add_dish"; // .html?????
+       try{ model.addAttribute("dishes",new Dishes());
+        return "add_dish";} // .html?????
+           catch(Exception e){
+               System.out.println(e);
+               return "error";
+           }
     }
 
     @RequestMapping(value = "/dish/create",method = RequestMethod.POST)

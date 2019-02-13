@@ -50,9 +50,9 @@ public class Dishes {
 
     @Override
     public String toString() {
-        return title + '\'' +
-                " " + description + '\'' +
-                "Цена: " + price;
+        return "\n " + title + ";" +
+                "\n " + description + ";" +
+                "\n Цена: " + price + "||";
     }
 
     public Integer getId() {

@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
     <h2>Добавление блюда</h2>
     <div>
+        <div>
         <form action="/dish/create" th:action="@{/dish/create}" th:object="${dishes}" method="post">
             <p>Название блюда: <input type="text" th:field="*{title}"></p>
             <p>Описание блюда: <input type="text" th:field="*{description}"></p>
             <p>Цена блюда:     <input type="number" th:field="*{price}"></p>
-            <p><input type="submit" value="Добавить"></p>
+            <div>
+            <p><input type="submit"  value="Добавить"></p>
+            </div>
         </form>
+        </div>
     </div>
     <div>
         <div>

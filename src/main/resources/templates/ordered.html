@@ -9,12 +9,15 @@
 <h3>Вы заказали:</h3>
 </div>
 <div th:each="orderdishes: ${orderdishes}">
-    <div th:utext="'Title: ' + ${orderdishes.title}"></div>
-    <div th:utext="'Price: ' + ${orderdishes.price}"></div>
+    <div th:utext="${orderdishes.title}"></div>
+    <div th:utext="'Цена: ' + ${orderdishes.price}"></div>
     <div>______________________________________  </div>
     <div>  </div>
-
 </div>
+
+<h3>Общая стоимость:</h3>
+<div th:utext="${totalPrice}"></div>
+
 <a th:href="@{'/pay?orderId={orderId}'(orderId=${orderId})}">
     <button type="button" th:text="Оплатить">Оплатить</button>
 </a>

@@ -63,6 +63,7 @@ public class DishesController {
         List<Dishes> ordereddishes = (List<Dishes>) order.getDishes();
         model.addAttribute("orderdishes", ordereddishes);
         model.addAttribute("orderId",orderId);
+        model.addAttribute("totalPrice",ordersRepository.findById(orderId).get().getPrice());
         ordersRepository.save(order);
         return "ordered";
     }

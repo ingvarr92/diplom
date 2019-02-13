@@ -6,12 +6,11 @@
 </head>
 <body>
 
-<h4>Меню:</h4>
+<h3>Меню:</h3>
 <div th:each="dishes: ${dishes}">
-    <div th:utext="'Id: ' + ${dishes.id}"></div>
-    <div th:utext="'Title: ' + ${dishes.title}"></div>
-    <div th:utext="'Description: ' + ${dishes.description}"></div>
-    <div th:utext="'Price: ' + ${dishes.price}"></div>
+    <div th:utext="${dishes.title}"></div>
+    <div th:utext="${dishes.description}"></div>
+    <div th:utext="'Цена: ' + ${dishes.price}"></div>
     <a th:href="@{'/add_dish/{id}?orderId={orderId}'(id=${dishes.id}, orderId=${orderId})}">
         <button type="button" th:text="Добавить">Добавить</button>
     </a>
@@ -22,8 +21,8 @@
 
 <h3>Блюда в заказе:</h3>
 <div th:each="orderdishes: ${orderdishes}">
-    <div th:utext="'Title: ' + ${orderdishes.title}"></div>
-    <div th:utext="'Price: ' + ${orderdishes.price}"></div>
+    <div th:utext="${orderdishes.title}"></div>
+    <div th:utext="'Цена: ' + ${orderdishes.price}"></div>
     <a th:href="@{'/del_dish/{id}?orderId={orderId}'(id=${orderdishes.id}, orderId=${orderId})}">
         <button type="button" th:text="Удалить">Удалить</button>
     </a>

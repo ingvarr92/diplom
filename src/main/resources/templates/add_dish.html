@@ -6,15 +6,20 @@
 </head>
 <body>
     <h2>Добавление блюда</h2>
+    <div>
         <form action="/dish/create" th:action="@{/dish/create}" th:object="${dishes}" method="post">
             <p>Название блюда: <input type="text" th:field="*{title}"></p>
             <p>Описание блюда: <input type="text" th:field="*{description}"></p>
             <p>Цена блюда:     <input type="number" th:field="*{price}"></p>
             <p><input type="submit" value="Добавить"></p>
         </form>
-
+    </div>
     <div>
-        <a href="/admin">Главная страница</a>
+        <div>
+                <a href="/admin">Главная страница</a>
+        </div>
+    </div>
+
     </div>
 </body>
 </html>

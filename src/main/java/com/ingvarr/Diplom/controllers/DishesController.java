@@ -114,10 +114,19 @@ public class DishesController {
         Orders order =ordersRepository.findById(orderId).get();
         order.setPrice(dishesRepository.findById(dishId).get().getPrice() + order.getPrice());
         order.setStatus("Создан");
-        order.setTable(5);
         order.getDishes().add(dishesRepository.findById(dishId).get());
         ordersRepository.save(order);
 
+        return "redirect:/index?orderId="+orderId;
+    }
+
+    @RequestMapping("/del_dish/{id}")
+    public String delProductFromCart(@PathVariable("id") Integer dishId,@RequestParam(value = "orderId", required = true)Integer orderId) {
+        Orders order =ordersRepository.findById(orderId).get();
+        order.setPrice(order.getPrice() - dishesRepository.findById(dishId).get().getPrice());
+        order.setStatus("Обновлен");
+        order.getDishes().remove(dishesRepository.findById(dishId).get());
+        ordersRepository.save(order);
         return "redirect:/index?orderId="+orderId;
     }
 }

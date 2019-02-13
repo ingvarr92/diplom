@@ -24,6 +24,9 @@
 <div th:each="orderdishes: ${orderdishes}">
     <div th:utext="'Title: ' + ${orderdishes.title}"></div>
     <div th:utext="'Price: ' + ${orderdishes.price}"></div>
+    <a th:href="@{'/del_dish/{id}?orderId={orderId}'(id=${orderdishes.id}, orderId=${orderId})}">
+        <button type="button" th:text="Удалить">Удалить</button>
+    </a>
     <div>____________________________________________</div>
 </div>
 <h3>Общая стоимость:</h3>

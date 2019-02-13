@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -94,8 +95,12 @@ public class DishesController {
     }
     @RequestMapping("/del_dish_list/{id}")
     public String addProductToCart(@PathVariable("id") Integer dishId) {
-        dishesRepository.deleteById(dishId);
-        return "redirect:/dishes";
+       try{ dishesRepository.deleteById(dishId);
+        return "redirect:/dishes";}
+       catch (Exception e){
+           System.out.println(e);
+           return "errorInOrder";
+       }
     }
 
     @RequestMapping(value = "/dish/create",method = RequestMethod.POST)
